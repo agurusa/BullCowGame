@@ -6,6 +6,8 @@
 //  Copyright © 2016 Aarthi Gurusami. All rights reserved.
 //
 
+#pragma once
+
 #include "fBullCowGame.hpp"
 #include <map>
 #define TMap std::map
@@ -18,17 +20,16 @@ fBullCowGame::fBullCowGame(){
 }
 
 void fBullCowGame::Reset(){
-	constexpr int32 MAX_TRIES = 8;
 	const FString HIDDEN_WORD = "planet";
 	MyCurrentTry = 1;
 	MyHiddenWord = HIDDEN_WORD;
-	MyMaxTries = MAX_TRIES;
 	bGameIsWon = false;
     return;
 }
 
 int32 fBullCowGame::GetMaxTries() const {
-    return MyMaxTries;
+	TMap<int32, int32> WordLengthToMaxTries { {3, 4}, {4, 7}, {5, 10}, {6, 15}};
+	return WordLengthToMaxTries[MyHiddenWord.length()];
 }
 
 int32 fBullCowGame::GetCurrentTry() const {

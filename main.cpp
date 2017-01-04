@@ -11,17 +11,30 @@ For game logic, see the FBullCowGame class.
 //  Copyright © 2016 Aarthi Gurusami. All rights reserved.
 //
 
+#pragma once
+
 #include <iostream>
 #include <string>
 #include "fBullCowGame.hpp"
 
+// to make syntax unreal friendly
 using FText = std::string;
 using int32 = int;
 
-fBullCowGame BCGame; //instantiate a new game
+// function prototypes as outside a class
+void PrintIntro();
+void PlayGame();
+FText GetValidGuess();
+bool AskToPlayAgain();
+void PrintGameSummary();
+void PrintGuess();
+
+// instantiate a new game
+fBullCowGame BCGame; 
 
 
-void Printintro(){
+
+void PrintIntro(){
     std::cout << "Welcome to Bulls and Cows" << std::endl;
     std::cout << "Guess the "<< BCGame.GetHiddenWordLength();
     std::cout << " letter isogram that I'm thinking of!!" << std::endl;
@@ -33,7 +46,8 @@ FText GetValidGuess(){
     FText Guess = "";
     do{
         int32 currentTry = BCGame.GetCurrentTry();
-        std::cout << "Try " << currentTry << ": Enter your guess: ";
+        std::cout << "Try " << currentTry << " out of " << BCGame.GetMaxTries();
+        std::cout << ": Enter your guess: ";
         getline (std::cin, Guess);
         Status = BCGame.CheckGuessValidity(Guess); 
         switch (Status){
@@ -99,7 +113,7 @@ bool AskToPlayAgain(){
 int main(int argc, const char * argv[]) {
     bool bPlayAgain = false;
     do{
-        Printintro();
+        PrintIntro();
         PlayGame();
         bPlayAgain = AskToPlayAgain();
     }

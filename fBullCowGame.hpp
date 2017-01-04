@@ -1,3 +1,7 @@
+/*
+The game logic (no view code or direct user interaction)
+The game is a simple guess the wrod game bsaed on MasterMind.
+*/
 //
 //  fBullCowGame.hpp
 //  BullCowGame
@@ -7,6 +11,7 @@
 //
 
 
+#pragma once
 
 #ifndef fBullCowGame_hpp
 #define fBullCowGame_hpp
@@ -14,12 +19,12 @@
 #include <stdio.h>
 #include <string>
 
+// Make unreal friendly
 using FString = std::string;
 using int32 = int;
 
 #endif /* fBullCowGame_hpp */
 
-// everything is public in structs
 struct fBullCowCount{
 	int32 Bulls = 0;
 	int32 Cows = 0;
@@ -54,7 +59,6 @@ public:
 private:
 	// see constructor for initialization
 	int32 MyCurrentTry;
-	int32 MyMaxTries;
 	FString MyHiddenWord;
 	bool bGameIsWon;
 	bool IsIsogram(FString) const;
